@@ -6,8 +6,8 @@ pi = math.pi
 import random
 
 list_for_error = pytest.mark.parametrize('radius, error_message',
-                                          [pytest.param(0, "r must be above zero", id="ValueError"),
-                                           pytest.param(-1, "r must be above zero", id="ValueError")
+                                          [(0, "r must be above zero"),
+                                           (-1, "r must be above zero")
                                            ]
                                         )
 
@@ -29,7 +29,5 @@ class TestCircle:
 
     @list_for_error
     def test_circle_negative(self, radius, error_message):
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError, match=error_message):
             Circle(radius)
-        assert str(exc_info.value)  == error_message, \
-            f'Ожидаемое сообщение об ошибке:{error_message} но ожидаемое: {exc_info.value}'

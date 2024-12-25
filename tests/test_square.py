@@ -28,7 +28,5 @@ class TestSquare:
 
     @list_for_error
     def test_square_negative(self, side_a, error_message):
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError, match=error_message):
             Square(side_a)
-        assert str(exc_info.value)  == error_message, \
-            f'Ожидаемое сообщение об ошибке:{error_message} но ожидаемое: {exc_info.value}'

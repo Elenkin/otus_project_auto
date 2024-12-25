@@ -33,7 +33,5 @@ class TestRectangle:
 
     @list_for_error
     def test_rectangle_negative(self, side_a, side_b, error_message):
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError, match=error_message):
             Rectangle(side_a, side_b)
-        assert str(exc_info.value)  == error_message, \
-            f'Ожидаемое сообщение об ошибке:{error_message} но ожидаемое: {exc_info.value}'

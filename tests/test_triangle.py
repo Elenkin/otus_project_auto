@@ -30,7 +30,5 @@ class TestTriangle:
 
     @list_for_error
     def test_triangle_negative(self, side_a, side_b, side_c, error_message):
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError, match=error_message):
             Triangle(side_a, side_b, side_c)
-        assert str(exc_info.value)  == error_message, \
-            f'Ожидаемое сообщение об ошибке:{error_message} но ожидаемое: {exc_info.value}'
