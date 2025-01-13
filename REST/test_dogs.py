@@ -41,6 +41,7 @@ class TestDogs:
         url = f'{base_url}/breeds/image/random'
 
         response = requests.get(url)
+        assert response.status_code == 200
         assert response.json()['status'] == 'success', \
             f'Ожидаемый статус: success, но получен: {response.json()['status']}'
 
